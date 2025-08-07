@@ -30,22 +30,23 @@ const Agenda: React.FC = () => {
   ];
 
   return (
-    <section className="py-20 px-6">
+    <section className="px-6 py-20" id="agenda">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+        <div className="mb-16 text-center">
+          <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl">
             Agenda <span className="text-primary">Detalhada</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            4 horas intensivas de conteúdo prático, desde os fundamentos até técnicas avançadas de desenvolvimento em Go.
+          <p className="max-w-3xl mx-auto text-xl text-gray-300">
+            4 horas intensivas de conteúdo prático, desde os fundamentos até
+            técnicas avançadas de desenvolvimento em Go.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid gap-8 md:grid-cols-2">
           {trilhas.map((trilha, index) => (
-            <div 
+            <div
               key={index}
-              className="backdrop-blur-xl bg-white/5 rounded-2xl p-8 border border-white/10 shadow-xl hover:bg-white/10 transition-all duration-300 hover:transform hover:scale-105"
+              className="p-8 transition-all duration-300 border shadow-xl backdrop-blur-xl bg-white/5 rounded-2xl border-white/10 hover:bg-white/10 hover:transform hover:scale-105"
             >
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-primary/20 rounded-xl">
@@ -53,12 +54,16 @@ const Agenda: React.FC = () => {
                 </div>
                 <div className="flex-1">
                   <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-xl font-bold text-white">{trilha.titulo}</h3>
-                    <span className="text-primary text-sm font-semibold bg-primary/20 px-3 py-1 rounded-full">
+                    <h3 className="text-xl font-bold text-white">
+                      {trilha.titulo}
+                    </h3>
+                    <span className="px-3 py-1 text-sm font-semibold rounded-full text-primary bg-primary/20">
                       {trilha.horario}
                     </span>
                   </div>
-                  <p className="text-gray-300 leading-relaxed">{trilha.descricao}</p>
+                  <p className="leading-relaxed text-gray-300">
+                    {trilha.descricao}
+                  </p>
                 </div>
               </div>
             </div>
