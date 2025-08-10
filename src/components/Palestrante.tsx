@@ -56,33 +56,29 @@ const Palestrante: React.FC = () => {
 
               <div className="mb-8 space-y-4 text-gray-300">
                 <p className="text-lg leading-relaxed">
-                  5+ anos de experiência com Go em ambientes de alta
-                  performance. Tech Lead em startups unicórnio, especialista em
-                  arquiteturas de microserviços e sistemas distribuídos.
+                  Com mais de 15 anos de carreira na tecnologia e 7+ anos
+                  trabalhando com Go, Arthur é referência quando o assunto é
+                  desenvolvimento de aplicações de alta performance. Atuou como
+                  líder técnico em projetos complexos, mentorando diversos
+                  desenvolvedores e conduzindo times em ambientes de missão
+                  crítica.
                 </p>
                 <p className="text-lg leading-relaxed">
-                  Contribuidor ativo da comunidade Go Brasil, palestrante em
-                  conferências nacionais e mentor de desenvolvedores em
-                  transição de carreira.
+                  Além da experiência prática, Arthur é um entusiasta de
+                  culturas de trabalho saudáveis, ajudando empresas e
+                  profissionais a aliarem excelência técnica com bem-estar no
+                  dia a dia.
                 </p>
               </div>
 
-              <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-primary">50+</div>
-                  <div className="text-sm text-gray-400">Projetos Go</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-2xl font-bold text-primary">1000+</div>
-                  <div className="text-sm text-gray-400">Devs Treinados</div>
-                </div>
+              <div className="flex gap-6">
                 <div className="text-center">
                   <div className="text-2xl font-bold text-primary">15+</div>
-                  <div className="text-sm text-gray-400">Palestras</div>
+                  <div className="text-sm text-gray-400">Anos de Carreira</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-2xl font-bold text-primary">3</div>
-                  <div className="text-sm text-gray-400">Certificações</div>
+                  <div className="text-2xl font-bold text-primary">1500+</div>
+                  <div className="text-sm text-gray-400">Devs Treinados</div>
                 </div>
               </div>
             </div>

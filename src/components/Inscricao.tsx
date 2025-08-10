@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { User, Mail, Code, Lightbulb, CheckCircle } from 'lucide-react';
+import Button from "./Button";
 
 const Inscricao: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -27,20 +28,23 @@ const Inscricao: React.FC = () => {
 
   if (isSubmitted) {
     return (
-      <section id="inscricao" className="py-20 px-6">
+      <section id="inscricao" className="px-6 py-20">
         <div className="max-w-2xl mx-auto">
-          <div className="backdrop-blur-xl bg-white/5 rounded-3xl p-12 border border-white/10 shadow-2xl text-center">
+          <div className="p-12 text-center border shadow-2xl backdrop-blur-xl bg-white/5 rounded-3xl border-white/10">
             <div className="flex justify-center mb-6">
-              <div className="p-4 bg-green-500/20 rounded-full">
+              <div className="p-4 rounded-full bg-green-500/20">
                 <CheckCircle className="text-green-400" size={48} />
               </div>
             </div>
-            <h2 className="text-3xl font-bold text-white mb-4">Inscrição Confirmada!</h2>
-            <p className="text-xl text-gray-300 mb-6">
+            <h2 className="mb-4 text-3xl font-bold text-white">
+              Inscrição Confirmada!
+            </h2>
+            <p className="mb-6 text-xl text-gray-300">
               Parabéns! Você está inscrito na Imersão Dominando Go.
             </p>
             <p className="text-gray-300">
-              Você receberá um email com todas as informações de acesso em breve.
+              Você receberá um email com todas as informações de acesso em
+              breve.
             </p>
           </div>
         </div>
@@ -49,10 +53,10 @@ const Inscricao: React.FC = () => {
   }
 
   return (
-    <section id="inscricao" className="py-20 px-6">
+    <section id="inscricao" className="px-6 py-20">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+        <div className="mb-16 text-center">
+          <h2 className="mb-4 text-4xl font-bold text-white md:text-5xl">
             Garanta sua <span className="text-primary">Vaga</span>
           </h2>
           <p className="text-xl text-gray-300">
@@ -60,11 +64,14 @@ const Inscricao: React.FC = () => {
           </p>
         </div>
 
-        <div className="backdrop-blur-xl bg-white/5 rounded-3xl p-8 md:p-12 border border-white/10 shadow-2xl">
+        <div className="p-8 border shadow-2xl backdrop-blur-xl bg-white/5 rounded-3xl md:p-12 border-white/10">
           <form onSubmit={handleSubmit} className="space-y-8">
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid gap-6 md:grid-cols-2">
               <div>
-                <label htmlFor="nome" className="block text-white text-lg font-semibold mb-3">
+                <label
+                  htmlFor="nome"
+                  className="block mb-3 text-lg font-semibold text-white"
+                >
                   <User className="inline mr-2" size={20} />
                   Nome Completo *
                 </label>
@@ -75,13 +82,16 @@ const Inscricao: React.FC = () => {
                   required
                   value={formData.nome}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 text-white placeholder-gray-400 transition-all border bg-white/10 border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   placeholder="Seu nome completo"
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-white text-lg font-semibold mb-3">
+                <label
+                  htmlFor="email"
+                  className="block mb-3 text-lg font-semibold text-white"
+                >
                   <Mail className="inline mr-2" size={20} />
                   E-mail *
                 </label>
@@ -92,14 +102,17 @@ const Inscricao: React.FC = () => {
                   required
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 text-white placeholder-gray-400 transition-all border bg-white/10 border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   placeholder="seu@email.com"
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="nivel" className="block text-white text-lg font-semibold mb-3">
+              <label
+                htmlFor="nivel"
+                className="block mb-3 text-lg font-semibold text-white"
+              >
                 <Code className="inline mr-2" size={20} />
                 Qual seu nível de experiência com Go? *
               </label>
@@ -109,18 +122,31 @@ const Inscricao: React.FC = () => {
                 required
                 value={formData.nivel}
                 onChange={handleInputChange}
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                className="w-full px-4 py-3 text-white transition-all border bg-white/10 border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
               >
-                <option value="" className="bg-gray-800">Selecione seu nível</option>
-                <option value="iniciante" className="bg-gray-800">Iniciante (nunca usei Go)</option>
-                <option value="basico" className="bg-gray-800">Básico (já fiz alguns tutoriais)</option>
-                <option value="intermediario" className="bg-gray-800">Intermediário (já desenvolvi projetos pequenos)</option>
-                <option value="avancado" className="bg-gray-800">Avançado (uso Go profissionalmente)</option>
+                <option value="" className="bg-gray-800">
+                  Selecione seu nível
+                </option>
+                <option value="iniciante" className="bg-gray-800">
+                  Iniciante (nunca usei Go)
+                </option>
+                <option value="basico" className="bg-gray-800">
+                  Básico (já fiz alguns tutoriais)
+                </option>
+                <option value="intermediario" className="bg-gray-800">
+                  Intermediário (já desenvolvi projetos pequenos)
+                </option>
+                <option value="avancado" className="bg-gray-800">
+                  Avançado (uso Go profissionalmente)
+                </option>
               </select>
             </div>
 
             <div>
-              <label htmlFor="projeto" className="block text-white text-lg font-semibold mb-3">
+              <label
+                htmlFor="projeto"
+                className="block mb-3 text-lg font-semibold text-white"
+              >
                 <Lightbulb className="inline mr-2" size={20} />
                 Qual projeto você gostaria de desenvolver? *
               </label>
@@ -131,19 +157,16 @@ const Inscricao: React.FC = () => {
                 rows={4}
                 value={formData.projeto}
                 onChange={handleInputChange}
-                className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none"
+                className="w-full px-4 py-3 text-white placeholder-gray-400 transition-all border resize-none bg-white/10 border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                 placeholder="Descreva uma ideia de projeto que você gostaria de criar com Go..."
               />
             </div>
 
             <div className="text-center">
-              <button
-                type="submit"
-                className="bg-primary text-white px-12 py-4 rounded-full text-xl font-bold hover:bg-primary/90 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-primary/50"
-              >
+              <Button type="submit" primary>
                 Confirmar Inscrição
-              </button>
-              <p className="text-sm text-gray-400 mt-4">
+              </Button>
+              <p className="mt-4 text-sm text-gray-400">
                 * Campos obrigatórios. Seus dados estão seguros conosco.
               </p>
             </div>

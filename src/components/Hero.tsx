@@ -26,7 +26,8 @@ const HeroSection = () => {
               </p>
             </div>
             <h1 className="mb-6 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
-              Domine a Programação com <span className="text-primary">Go</span>
+              <span className="text-primary">Dominando Go:</span> Sua Jornada
+              para Alta Performance
             </h1>
             <p className="max-w-xl mb-8 text-lg text-gray-300">
               Participe da nossa imersão intensiva e aprenda tudo o que você
@@ -59,7 +60,7 @@ const HeroSection = () => {
               </Button>
             </div>
           </div>
-          <div className="lg:w-1/2 lg:pl-12">
+          <div className="w-full lg:w-1/2 lg:pl-12">
             <Code />
           </div>
         </div>
