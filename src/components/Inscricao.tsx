@@ -1,56 +1,39 @@
 import React, { useState } from 'react';
 import { User, Mail, Code, Lightbulb, CheckCircle } from 'lucide-react';
 import Button from "./Button";
+import { toast } from "sonner";
 
 const Inscricao: React.FC = () => {
   const [formData, setFormData] = useState({
-    nome: '',
-    email: '',
-    nivel: '',
-    projeto: ''
+    nome: "",
+    email: "",
+    nivel: "",
+    projeto: "",
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
     // Simular envio do formulário
     setTimeout(() => {
       setIsSubmitted(true);
+      setIsSubmitting(false);
+      toast.success("Inscrição realizada com sucesso!");
     }, 1000);
   };
-
-  if (isSubmitted) {
-    return (
-      <section id="inscricao" className="px-6 py-20">
-        <div className="max-w-2xl mx-auto">
-          <div className="p-12 text-center border shadow-2xl backdrop-blur-xl bg-white/5 rounded-3xl border-white/10">
-            <div className="flex justify-center mb-6">
-              <div className="p-4 rounded-full bg-green-500/20">
-                <CheckCircle className="text-green-400" size={48} />
-              </div>
-            </div>
-            <h2 className="mb-4 text-3xl font-bold text-white">
-              Inscrição Confirmada!
-            </h2>
-            <p className="mb-6 text-xl text-gray-300">
-              Parabéns! Você está inscrito na Imersão Dominando Go.
-            </p>
-            <p className="text-gray-300">
-              Você receberá um email com todas as informações de acesso em
-              breve.
-            </p>
-          </div>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section id="inscricao" className="px-6 py-20">
@@ -65,7 +48,12 @@ const Inscricao: React.FC = () => {
         </div>
 
         <div className="p-8 border shadow-2xl backdrop-blur-xl bg-white/5 rounded-3xl md:p-12 border-white/10">
-          <form onSubmit={handleSubmit} className="space-y-8">
+          <form
+            onSubmit={handleSubmit}
+            className={`space-y-8 ${
+              isSubmitted ? "opacity-50 pointer-events-none" : ""
+            }`}
+          >
             <div className="grid gap-6 md:grid-cols-2">
               <div>
                 <label
@@ -163,7 +151,7 @@ const Inscricao: React.FC = () => {
             </div>
 
             <div className="text-center">
-              <Button type="submit" primary>
+              <Button type="submit" primary loading={isSubmitting}>
                 Confirmar Inscrição
               </Button>
               <p className="mt-4 text-sm text-gray-400">

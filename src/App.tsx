@@ -4,16 +4,18 @@ import Beneficios from "./components/Beneficios";
 import Inscricao from "./components/Inscricao";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
+import { Toaster } from "sonner";
 
 function App() {
   return (
-    <div className="bg-gray-900" style={{ backgroundColor: "#0A0A0A" }}>
+    <div className="bg-[#0A0A0A]">
       <Hero />
       <Agenda />
       <Palestrante />
       <Beneficios />
       <Inscricao />
       <Footer />
+      <Toaster richColors />
     </div>
   );
 }
