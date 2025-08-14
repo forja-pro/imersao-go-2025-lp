@@ -1,6 +1,6 @@
 import React from 'react';
 import { Github, Linkedin, Award } from "lucide-react";
-import arthur from "../assets/arthur.jpg";
+import Image from "next/image";
 
 const Palestrante: React.FC = () => {
   return (
@@ -18,10 +18,12 @@ const Palestrante: React.FC = () => {
               <div className="relative">
                 <div className="w-64 h-64 p-1 rounded-3xl bg-primary">
                   <div className="w-full h-full rounded-[1.25rem] bg-gray-800 flex items-center justify-center">
-                    <img
-                      src={arthur}
+                    <Image
+                      src="/arthur.jpg"
                       alt="Palestrante"
                       className="object-cover w-60 h-60 rounded-2xl"
+                      width={240}
+                      height={240}
                     />
                   </div>
                 </div>

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { User, Mail, Code, Lightbulb, CheckCircle } from 'lucide-react';
+"use client";
+import React, { useState } from "react";
+import { User, Mail, Code, Lightbulb } from "lucide-react";
 import Button from "./Button";
 import { toast } from "sonner";
 

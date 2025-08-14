@@ -1,3 +1,4 @@
+"use client";
 import { CodeIcon, CalendarIcon, ClockIcon } from "lucide-react";
 import Button from "./Button";
 import Code from "./Code";
