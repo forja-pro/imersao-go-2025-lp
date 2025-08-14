@@ -20,7 +20,7 @@ const Button = ({
     <button
       onClick={onClick}
       type={type}
-      className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 relative ${
+      className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 relative cursor-pointer ${
         primary
           ? "bg-primary text-black hover:bg-primary/90"
           : "bg-[#1a1a1a] text-white border border-[#333] hover:bg-[#252525]"

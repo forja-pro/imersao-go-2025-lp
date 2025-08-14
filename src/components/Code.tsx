@@ -3,7 +3,7 @@ import { darcula } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 const Code = () => (
   <div className="relative">
-    <div className="absolute inset-0 transform bg-gradient-to-tr from-primary/20 to-transparent rounded-xl blur-md -rotate-2"></div>
+    <div className="absolute inset-0 transform bg-linear-to-tr from-primary/20 to-transparent rounded-xl blur-md -rotate-2"></div>
     <div className="relative bg-[#131313] border border-[#333] rounded-xl p-6 shadow-2xl backdrop-blur-sm">
       <div className="flex items-center mb-4">
         <div className="flex space-x-2">
