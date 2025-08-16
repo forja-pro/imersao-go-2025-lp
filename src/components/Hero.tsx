@@ -1,6 +1,6 @@
 "use client";
 import { CodeIcon, CalendarIcon, ClockIcon } from "lucide-react";
-import Button from "./Button";
+import Button from "./ui/Button";
 import Code from "./Code";
 
 const HeroSection = () => {

@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { User, Mail, Code, Lightbulb } from "lucide-react";
-import Button from "./Button";
+import Button from "./ui/Button";
 import { toast } from "sonner";
 
 const Inscricao: React.FC = () => {
