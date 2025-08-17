@@ -1,25 +1,25 @@
 import { InputHTMLAttributes } from "react";
+import { twMerge } from "tailwind-merge";
 
 type Props = {
   errors?: string[];
-  name: string;
 };
 
 export default function Input({
   errors,
-  name,
+  className,
   ...otherProps
 }: Props & InputHTMLAttributes<HTMLInputElement>) {
   return (
     <div className="w-full">
       <input
-        id={name}
-        name={name}
-        className={errors ? "outline-2 outline-red-700" : ""}
+        className={twMerge(errors ? "ring-2 ring-red-400" : "", className)}
         aria-describedby="error"
         {...otherProps}
       />
-      {errors && <span className="text-red-700">{errors[0]}</span>}
+      {errors && (
+        <span className="inline-block mt-2 text-red-400">{errors[0]}</span>
+      )}
     </div>
   );
 }

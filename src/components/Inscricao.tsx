@@ -1,40 +1,34 @@
 "use client";
-import React, { useState } from "react";
+import React, { useActionState, useEffect, useState } from "react";
 import { User, Mail, Code, Lightbulb } from "lucide-react";
 import Button from "./ui/Button";
 import { toast } from "sonner";
+import { registerEvent } from "@/actions/event-registration";
+import { RegistrationSchemaErrorType, RegistrationSchemaType } from "@/types";
+import Input from "./ui/Input";
+import { twMerge } from "tailwind-merge";
 
 const Inscricao: React.FC = () => {
-  const [formData, setFormData] = useState({
-    nome: "",
-    email: "",
-    nivel: "",
-    projeto: "",
+  const [formState, formAction, pending] = useActionState(registerEvent, {
+    data: {} as RegistrationSchemaType,
+    errors: {} as RegistrationSchemaErrorType,
   });
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleInputChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
-  ) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    // Simular envio do formulário
-    setTimeout(() => {
-      setIsSubmitted(true);
-      setIsSubmitting(false);
+  useEffect(() => {
+    if (Object.keys(formState.errors || {}).length === 0) {
       toast.success("Inscrição realizada com sucesso!");
-    }, 1000);
-  };
+    } else {
+      toast.error("Por favor, corrija os erros no formulário.");
+      // Focus first error field
+      const firstErrorField = Object.keys(
+        formState.errors?.fieldErrors || {}
+      )[0];
+      if (firstErrorField) {
+        const element = document.getElementById(firstErrorField);
+        element?.focus();
+      }
+    }
+  }, [formState]);
 
   return (
     <section id="inscricao" className="px-6 py-20">
@@ -50,9 +44,9 @@ const Inscricao: React.FC = () => {
 
         <div className="p-8 border shadow-2xl backdrop-blur-xl bg-white/5 rounded-3xl md:p-12 border-white/10">
           <form
-            onSubmit={handleSubmit}
+            action={formAction}
             className={`space-y-8 ${
-              isSubmitted ? "opacity-50 pointer-events-none" : ""
+              pending ? "opacity-50 pointer-events-none" : ""
             }`}
           >
             <div className="grid gap-6 md:grid-cols-2">
@@ -64,15 +58,17 @@ const Inscricao: React.FC = () => {
                   <User className="inline mr-2" size={20} />
                   Nome Completo *
                 </label>
-                <input
+                <Input
                   type="text"
-                  id="nome"
-                  name="nome"
+                  id="name"
+                  name="name"
                   required
-                  value={formData.nome}
-                  onChange={handleInputChange}
                   className="w-full px-4 py-3 text-white placeholder-gray-400 transition-all border bg-white/10 border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   placeholder="Seu nome completo"
+                  errors={formState.errors?.fieldErrors?.name}
+                  minLength={2}
+                  maxLength={100}
+                  defaultValue={formState.data?.name}
                 />
               </div>
 
@@ -84,15 +80,15 @@ const Inscricao: React.FC = () => {
                   <Mail className="inline mr-2" size={20} />
                   E-mail *
                 </label>
-                <input
+                <Input
                   type="email"
                   id="email"
                   name="email"
                   required
-                  value={formData.email}
-                  onChange={handleInputChange}
                   className="w-full px-4 py-3 text-white placeholder-gray-400 transition-all border bg-white/10 border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
                   placeholder="seu@email.com"
+                  errors={formState.errors?.fieldErrors?.email}
+                  defaultValue={formState.data?.email}
                 />
               </div>
             </div>
@@ -106,12 +102,17 @@ const Inscricao: React.FC = () => {
                 Qual seu nível de experiência com Go? *
               </label>
               <select
-                id="nivel"
-                name="nivel"
+                id="experience_level"
+                name="experience_level"
                 required
-                value={formData.nivel}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 text-white transition-all border bg-white/10 border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                className={twMerge(
+                  "w-full px-4 py-3 text-white transition-all border bg-white/10 border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent",
+                  formState.errors?.fieldErrors?.experience_level?.length
+                    ? "ring-2 ring-red-400"
+                    : ""
+                )}
+                defaultValue={formState.data?.experience_level}
+                key={formState.data?.experience_level || "default"}
               >
                 <option value="" className="bg-gray-800">
                   Selecione seu nível
@@ -129,6 +130,11 @@ const Inscricao: React.FC = () => {
                   Avançado (uso Go profissionalmente)
                 </option>
               </select>
+              {formState.errors?.fieldErrors?.experience_level && (
+                <span className="inline-block mt-2 text-red-400">
+                  {formState.errors?.fieldErrors?.experience_level[0]}
+                </span>
+              )}
             </div>
 
             <div>
@@ -137,22 +143,30 @@ const Inscricao: React.FC = () => {
                 className="block mb-3 text-lg font-semibold text-white"
               >
                 <Lightbulb className="inline mr-2" size={20} />
-                Qual projeto você gostaria de desenvolver? *
+                Qual projeto você gostaria de desenvolver?
               </label>
               <textarea
-                id="projeto"
-                name="projeto"
-                required
+                id="project_idea"
+                name="project_idea"
                 rows={4}
-                value={formData.projeto}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 text-white placeholder-gray-400 transition-all border resize-none bg-white/10 border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                className={twMerge(
+                  "w-full px-4 py-3 text-white placeholder-gray-400 transition-all border resize-none bg-white/10 border-white/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent",
+                  formState.errors?.fieldErrors?.project_idea?.length
+                    ? "ring-2 ring-red-400"
+                    : ""
+                )}
                 placeholder="Descreva uma ideia de projeto que você gostaria de criar com Go..."
+                defaultValue={formState.data?.project_idea}
               />
+              {formState.errors?.fieldErrors?.project_idea && (
+                <span className="inline-block mt-2 text-red-400">
+                  {formState.errors?.fieldErrors?.project_idea[0]}
+                </span>
+              )}
             </div>
 
             <div className="text-center">
-              <Button type="submit" primary loading={isSubmitting}>
+              <Button type="submit" primary loading={pending}>
                 Confirmar Inscrição
               </Button>
               <p className="mt-4 text-sm text-gray-400">
